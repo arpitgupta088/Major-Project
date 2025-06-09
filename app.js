@@ -23,6 +23,7 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({ extended: true })); // ye body parser ka kaam karega, jo form se data ko parse karega
 app.use(methodOverride("_method")); 
 app.engine('ejs', ejsMate); 
+app.use(express.static(path.join(__dirname, "/public"))); // ye public folder ko static folder banayega, jahan se css aur js files serve hongi
 
 app.get("/", (req, res) => {  // this is the root route // basic api
     res.send("HI i am root");

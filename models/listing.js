@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const Review = require("./review.js");
 
 const listingSchema = new Schema({
     title: {
@@ -17,7 +18,19 @@ const listingSchema = new Schema({
     price: Number,
     location: String,
     country: String,
+    reviews: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "Review" // ye reference hai Review model ka, jisse ham listing ke andar reviews ko store kar sakte hain
+        }
+    ]
 });             // ye listing schema ho gya aur isey use krke ham ek model banayenge
+
+listingSchema.post("findOneAndDelete", async (listing) => {
+    if (listing) {
+        await Review.deleteMany({ _id: { $in: listing.reviews } }); // ye listing ke saare reviews ko delete karega jo listing ke andar hain
+    }
+});
 
 const Listing = mongoose.model("Listing", listingSchema); // ye model ban gya
 module.exports = Listing; // ab isey export krna hoga taki dusre file mein use kr sakein

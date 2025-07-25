@@ -10,7 +10,7 @@
         <!-- mtlb large screen size me min 3 cards dikhayi denge, med pe 2, small pe 1-->
         <% for(let listing of allListings) { %>
             <a href="/listings/<%= listing._id %>" class="listing-link">
-                <div class="card col">
+                <div class="card col listing-card">
 
                     <img src="<%= listing.image.url %>" class="card-img-top" alt="listing_image" style="height: 17rem">
                       <div class="card-img-overlay"></div>

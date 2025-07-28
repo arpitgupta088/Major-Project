@@ -23,7 +23,11 @@ const listingSchema = new Schema({
             type: Schema.Types.ObjectId,
             ref: "Review" // ye reference hai Review model ka, jisse ham listing ke andar reviews ko store kar sakte hain
         }
-    ]
+    ],
+    owner: {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+    },
 });             // ye listing schema ho gya aur isey use krke ham ek model banayenge
 
 listingSchema.post("findOneAndDelete", async (listing) => {

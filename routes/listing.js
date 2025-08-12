@@ -6,6 +6,8 @@ const { isLoggedIn, isOwner, validateListing} = require("../middleware.js");
 
 const listingController = require("../controllers/listings.js");
 
+router.get("/category/:category", wrapAsync(listingController.filterByCategory));
+
 //index route
 router.get("/", wrapAsync(listingController.index));    // jo kaam ho rha h wo controllers folder me dal diya h
                                     //index var me aur use yaha require krliya

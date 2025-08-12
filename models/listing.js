@@ -28,6 +28,21 @@ const listingSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "User",
     },
+    geometry: {
+        type: {
+            type: String, // 'Point' ya 'LineString' ya 'Polygon'
+            enum: ['Point'], // sirf 'Point' allow karega
+            required: true,
+        },
+        coordinates: {
+            type: [Number], // [longitude, latitude]
+            required: true,
+        }
+    },
+    category: {
+        type: String,
+        enum: ['mountains', 'arctic spots', 'farms', 'rooms', 'mountains', 'cool cities', 'castles', 'camping spots']
+    }
 });             // ye listing schema ho gya aur isey use krke ham ek model banayenge
 
 listingSchema.post("findOneAndDelete", async (listing) => {

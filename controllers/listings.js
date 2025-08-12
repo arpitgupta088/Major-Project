@@ -116,8 +116,8 @@ module.exports.updateListing = async (req, res) => {
 
 module.exports.filterByCategory = async (req, res) => {
     const { category } = req.params;
-    const allListings = await Listing.find({ category });
-    res.render("listings/index", { allListings });
+    const allListings = await Listing.find({ category: category });
+    res.render("listings/index", { allListings, category });
 };
 
 
